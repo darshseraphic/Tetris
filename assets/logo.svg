@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Block Fall mark">
+  <title>Block Fall</title>
+  <rect width="128" height="128" rx="27" fill="#111111"/>
+  <g fill="#FFFFFF">
+    <rect x="33" y="17" width="29" height="29" rx="4"/>
+    <rect x="33" y="50" width="29" height="29" rx="4"/>
+    <rect x="33" y="83" width="29" height="29" rx="4"/>
+    <rect x="66" y="83" width="29" height="29" rx="4"/>
+  </g>
+</svg>

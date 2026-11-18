@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F1F1F1">
+  <title>Block Fall — Tetris</title>
+  <link rel="stylesheet" href="sidepanel.css">
+  <script src="theme.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Block Fall, back to top">
+        <img class="brand-mark" src="assets/logo.svg" alt="" width="24" height="24" aria-hidden="true">
+        <span class="brand-name">BLOCK FALL</span>
+      </a>
+      <button id="theme-button" class="theme-button" type="button"
+        aria-label="Current theme: System. Click to switch to Light." title="Switch to Light theme">
+        <span class="theme-icon" aria-hidden="true">◐</span>
+        <span id="theme-label">System</span>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">CLASSIC MODE <span aria-hidden="true">·</span> 10 × 20</p>
+          <h1 id="page-title">Tetris<span class="title-period">.</span></h1>
+        </div>
+        <p class="intro-copy">Stack clean.<br>Think ahead.</p>
+      </section>
+
+      <section class="play-section" aria-label="Tetris playfield">
+        <div class="play-meta" aria-label="Current game statistics">
+          <div class="play-meta-item">
+            <span>SCORE</span>
+            <strong id="play-score">000000</strong>
+          </div>
+          <div class="play-meta-item">
+            <span>LEVEL</span>
+            <strong id="play-level">01</strong>
+          </div>
+        </div>
+
+        <div class="board-frame">
+          <canvas
+            id="game-board"
+            width="300"
+            height="600"
+            tabindex="0"
+            role="img"
+            aria-label="Tetris playfield, 10 columns by 20 rows. Focus this board to use the keyboard controls."
+          ></canvas>
+          <div id="game-overlay" class="game-overlay is-minimal">
+            <p id="overlay-kicker" class="overlay-kicker" hidden></p>
+            <h2 id="overlay-title" hidden></h2>
+            <p id="overlay-copy" hidden></p>
+            <button id="start-button" class="button button-light overlay-action" type="button">
+              Start game <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="board-caption">
+          <span>10 × 20 GRID</span>
+          <span>ENDLESS RUN</span>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Additional game statistics">
+        <article class="stat-card">
+          <p class="stat-label">PERSONAL BEST</p>
+          <p id="best-value" class="stat-value">000000</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">LINES CLEARED</p>
+          <p id="lines-value" class="stat-value">000</p>
+        </article>
+      </section>
+
+      <section class="preview-row" aria-label="Piece previews">
+        <article class="preview-card hold-card">
+          <div class="card-heading">
+            <h2 class="section-label">HOLD</h2>
+            <span class="card-hint">C</span>
+          </div>
+          <canvas id="hold-preview" width="120" height="80" aria-label="Held piece preview"></canvas>
+        </article>
+        <article class="preview-card next-card">
+          <div class="card-heading">
+            <h2 class="section-label">UP NEXT</h2>
+            <span class="card-hint">01—03</span>
+          </div>
+          <div id="next-list" class="next-list">
+            <canvas width="120" height="50" aria-label="Next piece one"></canvas>
+            <canvas width="120" height="50" aria-label="Next piece two"></canvas>
+            <canvas width="120" height="50" aria-label="Next piece three"></canvas>
+          </div>
+        </article>
+      </section>
+
+      <section class="controls-card" aria-labelledby="controls-title">
+        <div class="card-heading controls-heading">
+          <h2 id="controls-title" class="section-label">QUICK CONTROLS</h2>
+          <span class="card-hint">KEYBOARD / TOUCH</span>
+        </div>
+        <div class="direction-controls" aria-label="Movement controls">
+          <button class="control-button" type="button" data-control="left" aria-label="Move left" title="Move left">←</button>
+          <button class="control-button" type="button" data-control="rotate" aria-label="Rotate clockwise" title="Rotate clockwise">↻</button>
+          <button class="control-button" type="button" data-control="down" aria-label="Soft drop" title="Soft drop">↓</button>
+          <button class="control-button" type="button" data-control="right" aria-label="Move right" title="Move right">→</button>
+        </div>
+        <div class="piece-controls">
+          <button class="button button-secondary" type="button" data-control="hold">Hold piece <span aria-hidden="true">C</span></button>
+          <button class="button button-secondary" type="button" data-control="drop">Hard drop <span aria-hidden="true">Space</span></button>
+        </div>
+        <div class="game-actions">
+          <button id="pause-button" class="button button-primary" type="button" disabled>Pause <span aria-hidden="true">Ⅱ</span></button>
+          <button id="restart-button" class="button button-outline" type="button">Restart <span aria-hidden="true">↺</span></button>
+        </div>
+        <p class="keyboard-hint">← → move <span aria-hidden="true">·</span> ↑ / X rotate <span aria-hidden="true">·</span> Space drop <span aria-hidden="true">·</span> P pause</p>
+      </section>
+
+      <footer class="footer">
+        <span>BEST SCORE SAVED ON THIS DEVICE</span>
+        <span>BLOCK FALL / 01</span>
+      </footer>
+      <p id="game-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+    </main>
+  </div>
+</body>
+</html>

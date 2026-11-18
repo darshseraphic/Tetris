@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Block Fall \u2014 Tetris Side Panel",
+  "version": "1.2.3",
+  "description": "A focused, monochrome Tetris game that lives in Chrome's side panel.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "storage",
+    "sidePanel"
+  ],
+  "action": {
+    "default_title": "Open Block Fall side panel",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "32": "assets/icon-32.png",
+      "48": "assets/icon-48.png",
+      "128": "assets/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  }
+}

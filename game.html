@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f1f1ee">
+  <title>Block Fall — Tetris</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="wordmark" href="#top" aria-label="Block Fall home">
+        <span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>BLOCK<span class="wordmark-light">/</span>FALL</span>
+      </a>
+      <div class="topbar-meta">
+        <span class="eyebrow">CHROME EXTENSION</span>
+        <span class="version">01&nbsp; / &nbsp;CLASSIC</span>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow intro-kicker">A STUDY IN SPATIAL LOGIC</p>
+          <h1 id="page-title">Tetris<span class="title-period">.</span></h1>
+        </div>
+        <p class="intro-copy">Arrange the falling forms.<br>Clear the line. Keep your space.</p>
+      </section>
+
+      <section class="game-layout" aria-label="Tetris game">
+        <div class="board-column">
+          <div class="board-heading">
+            <span class="section-label">PLAYFIELD</span>
+            <span id="phase-label" class="phase-label" aria-live="polite">READY</span>
+          </div>
+          <div class="board-frame">
+            <canvas id="game-board" width="300" height="600" role="img" aria-label="Tetris playfield, 10 columns by 20 rows"></canvas>
+            <div id="game-overlay" class="game-overlay">
+              <p id="overlay-kicker" class="eyebrow">READY WHEN YOU ARE</p>
+              <h2 id="overlay-title">Make it<br>fit.</h2>
+              <p id="overlay-copy">Use the keys or the controls to begin.</p>
+              <button id="start-button" class="button button-light" type="button">Start game <span aria-hidden="true">↗</span></button>
+            </div>
+          </div>
+          <div class="board-footer">
+            <span>10 × 20 GRID</span>
+            <span>ENDLESS MODE</span>
+          </div>
+        </div>
+
+        <aside class="info-column" aria-label="Game information and controls">
+          <div class="stats-grid">
+            <section class="stat-card stat-primary" aria-label="Current score">
+              <p class="eyebrow">SCORE</p>
+              <p id="score-value" class="stat-value">000000</p>
+            </section>
+            <section class="stat-card" aria-label="Best score">
+              <p class="eyebrow">PERSONAL BEST</p>
+              <p id="best-value" class="stat-value">000000</p>
+            </section>
+            <section class="stat-card" aria-label="Current level">
+              <p class="eyebrow">LEVEL</p>
+              <p id="level-value" class="stat-value">01</p>
+            </section>
+            <section class="stat-card" aria-label="Lines cleared">
+              <p class="eyebrow">LINES</p>
+              <p id="lines-value" class="stat-value">000</p>
+            </section>
+          </div>
+
+          <div class="preview-row">
+            <section class="preview-card" aria-label="Held piece">
+              <div class="card-heading"><span class="section-label">HOLD</span><span class="tiny-index">C</span></div>
+              <canvas id="hold-preview" width="120" height="88" aria-label="Held piece preview"></canvas>
+            </section>
+            <section class="preview-card next-card" aria-label="Next pieces">
+              <div class="card-heading"><span class="section-label">UP NEXT</span><span class="tiny-index">01—03</span></div>
+              <div id="next-list" class="next-list">
+                <canvas width="120" height="48" aria-label="Next piece one"></canvas>
+                <canvas width="120" height="48" aria-label="Next piece two"></canvas>
+                <canvas width="120" height="48" aria-label="Next piece three"></canvas>
+              </div>
+            </section>
+          </div>
+
+          <section class="control-card" aria-labelledby="controls-title">
+            <div class="card-heading control-heading">
+              <span id="controls-title" class="section-label">CONTROLS</span>
+              <span class="tiny-index">KEYBOARD / TOUCH</span>
+            </div>
+            <div class="keymap">
+              <div class="keymap-row"><span class="keycap">←</span><span class="keycap">→</span><span class="key-description">Move</span></div>
+              <div class="keymap-row"><span class="keycap">↓</span><span class="key-description">Soft drop</span></div>
+              <div class="keymap-row"><span class="keycap">↑</span><span class="keycap">X</span><span class="key-description">Rotate clockwise</span></div>
+              <div class="keymap-row"><span class="keycap">Z</span><span class="key-description">Rotate counter-clockwise</span></div>
+              <div class="keymap-row"><span class="keycap keycap-wide">SPACE</span><span class="key-description">Hard drop</span></div>
+              <div class="keymap-row"><span class="keycap">C</span><span class="key-description">Hold piece</span></div>
+              <div class="keymap-row"><span class="keycap">P</span><span class="key-description">Pause / resume</span></div>
+            </div>
+            <div class="touch-controls" aria-label="Touch game controls">
+              <button class="touch-button" type="button" data-control="left" aria-label="Move left">←</button>
+              <button class="touch-button" type="button" data-control="rotate" aria-label="Rotate clockwise">↻</button>
+              <button class="touch-button" type="button" data-control="down" aria-label="Soft drop">↓</button>
+              <button class="touch-button" type="button" data-control="right" aria-label="Move right">→</button>
+              <button class="touch-button touch-button-wide" type="button" data-control="hold" aria-label="Hold piece">HOLD</button>
+              <button class="touch-button touch-button-wide touch-button-solid" type="button" data-control="drop" aria-label="Hard drop">DROP ↓↓</button>
+            </div>
+          </section>
+
+          <div class="game-actions">
+            <button id="pause-button" class="button button-dark" type="button" disabled>Pause <span aria-hidden="true">Ⅱ</span></button>
+            <button id="restart-button" class="button button-outline" type="button">Restart <span aria-hidden="true">↺</span></button>
+          </div>
+          <p class="micro-note">A clear board is a clear mind. Best score is saved on this device.</p>
+        </aside>
+      </section>
+
+      <footer class="page-footer">
+        <span>BLOCK/FALL <span class="footer-muted">— CLASSIC PUZZLE GAME</span></span>
+        <span class="footer-muted">BUILT FOR FOCUS.</span>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
